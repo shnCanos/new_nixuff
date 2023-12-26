@@ -1,0 +1,64 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+completion-trigger-len = 1
+auto-format = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.lsp]
+display-inlay-hints = true
+display-messages = true
+
+[editor.file-picker]
+hidden = false
+max-depth = 12
+
+# [editor.indent-guides]
+# render = true
+# skip-levels = 2
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+
+[keys.normal.space]
+"space" = "file_picker" 
+w = { x = [":buffer-close", "wclose"]}
+# f = { s = ":write"}
+x = ":new"
+
+[keys.normal.space.b]
+# description = "Bandana dee"
+s = ":write"
+f = "buffer_picker"
+c = ":buffer-close"
+a = ":write-all"
+x = ":hsplit-new"
+l = "goto_next_buffer"
+h = "goto_previous_buffer"
+F = "file_picker_in_current_buffer_directory"
+
+[keys.normal.space.c]
+# . "config"
+o = ":config-open"
+r = ":config-reload"
+
+[keys.normal]
+"A-x" = "command_palette"
+"ret" = ["move_line_down", "insert_mode"] # Maps the enter key to move to start of next line
+X = "extend_line_above"
+G = "goto_file_end"
+
+[keys.normal.g]
+a = "code_action" # Maps `ga` to show possible code actions
+L = "extend_to_line_end"
+H = "extend_to_line_start"
+
+[keys.normal.space.q]
+q = ":wqa"
+s = ":wq"
+f = ":q!"
