@@ -16,7 +16,7 @@
       system = "x86_64-linux";
       homePath = "/home/canos";
       nixuffPath = "${homePath}/new_nixuff";
-      wallpaper = ./home-manager/files/Pictures/backgrounds/fusion.png;
+      wallpaper = ./home-manager/backgrounds/fusion.png;
 
       pkgs = import nixpkgs {
         system = system;
