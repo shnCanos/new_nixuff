@@ -10,6 +10,7 @@
     };
 
     plymouth = {
+      # Stylix styles this?
       enable = true;
       theme = "colorful_loop";
       themePackages = [

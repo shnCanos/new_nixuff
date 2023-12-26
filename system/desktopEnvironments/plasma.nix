@@ -13,13 +13,7 @@ in with lib; {
 
   config = mkIf cfg.enable {
     services.xserver = {
-      enable = true;
-
-      displayManager = {
-        defaultSession = "plasmawayland";
-        gdm.enable = true; # GDM because of lightdm issues or something
-      };
-
+      displayManager.defaultSession = "plasmawayland";
       desktopManager.plasma5.enable = true;
       layout = "us";
       xkbVariant = "";

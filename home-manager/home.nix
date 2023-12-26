@@ -1,4 +1,4 @@
-{ config, homePath, nixuffPath, inputs, system, ... }:
+{ config, homePath, nixuffPath, inputs, system, wallpaper, pkgs, ... }:
 
 {
   imports = [ ./modules ];

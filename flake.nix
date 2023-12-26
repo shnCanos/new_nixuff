@@ -8,9 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     my-nixvim-config.url = "github:shnCanos/myNixVimConfig";
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, my-nixvim-config }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (nixpkgs) lib;
       system = "x86_64-linux";
@@ -32,7 +34,7 @@
       mkConfig = configName:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs pkgs homePath nixuffPath; };
+          specialArgs = { inherit inputs pkgs homePath nixuffPath wallpaper; };
 
           modules = [
             ./system

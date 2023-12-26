@@ -33,6 +33,7 @@ let
       ffmpeg
       wget
       openssl # hmm
+      ripgrep
 
       # Virtual machine
       virt-manager

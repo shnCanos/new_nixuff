@@ -1,10 +1,7 @@
 { wallpaper, ... }: {
   programs.kitty = {
     enable = true;
-    font.name = "FiraCode Nerd Font";
-    font.size = 11.5;
     shellIntegration.enableBashIntegration = true;
-    theme = "Catppuccin-Mocha";
     settings = {
       disable_ligatures = "never";
       background_image = builtins.toString wallpaper;

@@ -29,8 +29,8 @@
     true; # Workaround for intel cpu issues, or something?
 
   # To make tpl work in newer thinkpads (might not be needed)
-  boot = {
-    kernelModules = [ "acpi_call" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-  };
+  # boot = {
+  #   kernelModules = [ "acpi_call" ];
+  #   extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+  # };
 }

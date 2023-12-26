@@ -1,17 +1,18 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    ./utils/keyd.nix
-    ./utils/boot.nix
-    ./utils/vms.nix
+
+    ./modules/keyd.nix
+    ./modules/boot.nix
+    ./modules/vms.nix
+
     ./boilerplate.nix
     ./apps.nix
     ./fonts.nix
 
-    # Only plasma, for now
-    ./desktopEnvironment/plasma.nix
+    ./desktopEnvironments
   ];
 
   personal.plasma.enable = true;
