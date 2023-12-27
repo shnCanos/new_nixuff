@@ -52,10 +52,6 @@ let
       # Flutter
       flutter
 
-      # NOTE: Is this necessary?
-      # nvim
-      # wl-clipboard
-
       # PROLOG
       swiProlog
 

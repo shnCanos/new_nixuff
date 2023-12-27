@@ -19,7 +19,7 @@
       homePath = "/home/canos";
       nixuffPath = "${homePath}/new_nixuff";
       wallpaper = ./home-manager/backgrounds/fusion.png;
-      usePlasma = true;
+      usePlasma = false;
       useHyprland = true;
 
       pkgs = import nixpkgs {

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, useHyprland, ... }:
+{ config, lib, pkgs, useHyprland, usePlasma, ... }:
 
 {
   config = lib.mkIf (useHyprland) {
@@ -12,5 +12,10 @@
 
     services.blueman.enable = true;
     programs.nm-applet.enable = true;
+
+    # tlp does not like plasma
+    services.tlp.enable = !usePlasma;
+
+    security.pam.services.swaylock = { };
   };
 }
