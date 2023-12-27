@@ -15,8 +15,6 @@
     ./desktopEnvironments
   ];
 
-  personal.plasma.enable = true;
-
   programs = {
     dconf.enable = true;
     partition-manager.enable = true;

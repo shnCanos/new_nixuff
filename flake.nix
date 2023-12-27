@@ -19,6 +19,8 @@
       homePath = "/home/canos";
       nixuffPath = "${homePath}/new_nixuff";
       wallpaper = ./home-manager/backgrounds/fusion.png;
+      usePlasma = true;
+      useHyprland = true;
 
       pkgs = import nixpkgs {
         system = system;
@@ -34,7 +36,10 @@
       mkConfig = configName:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs pkgs homePath nixuffPath wallpaper; };
+          specialArgs = {
+            inherit inputs pkgs homePath nixuffPath wallpaper usePlasma
+              useHyprland;
+          };
 
           modules = [
             ./system
@@ -44,8 +49,8 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit inputs homePath nixuffPath wallpaper configName
-                    system;
+                  inherit inputs homePath nixuffPath wallpaper configName system
+                    useHyprland;
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;

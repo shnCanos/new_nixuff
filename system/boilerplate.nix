@@ -57,9 +57,6 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
   networking = {
     networkmanager = {
       enable = true;
@@ -91,6 +88,8 @@
 
   # Enable sound with pipewire.
   sound = { enable = true; };
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
 
   system.stateVersion = "23.05";
 }
