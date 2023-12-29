@@ -6,7 +6,7 @@
     ./vscode
     ./xobs
     ./bash
-    ./hyprland
+    ./wlr
 
     ./firefox.nix
     ./git.nix

@@ -1,6 +1,12 @@
-{ inputs, ... }:
+{ inputs, useHyprland, useSway, ... }:
 
 {
+  assertions = [{
+    assertion = !(useHyprland && useSway);
+    message =
+      "Sway and Hyprland cannot be enabled at the same time due to differences in the waybar config!";
+  }];
+
   imports = [
     /etc/nixos/hardware-configuration.nix
 

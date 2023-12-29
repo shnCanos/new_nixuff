@@ -21,6 +21,7 @@
       wallpaper = ./home-manager/backgrounds/fusion.png;
       usePlasma = false;
       useHyprland = true;
+      useSway = false; # WIP
 
       pkgs = import nixpkgs {
         system = system;
@@ -38,7 +39,7 @@
           inherit system;
           specialArgs = {
             inherit inputs pkgs homePath nixuffPath wallpaper usePlasma
-              useHyprland;
+              useHyprland useSway;
           };
 
           modules = [
@@ -50,7 +51,7 @@
               home-manager = {
                 extraSpecialArgs = {
                   inherit inputs homePath nixuffPath wallpaper configName system
-                    useHyprland;
+                    useHyprland useSway;
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;
