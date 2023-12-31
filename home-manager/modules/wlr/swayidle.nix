@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, useSway, useHyprland, ... }: {
   services.swayidle = {
-    enable = true;
+    enable = useSway || useHyprland;
     events = [{
       event = "before-sleep";
       command = "${pkgs.swaylock}/bin/swaylock -fF";
@@ -13,8 +13,7 @@
       }
       {
         timeout = 120;
-        command =
-          "${pkgs.brightnessctl}/bin/brightnessctl set 0% && ${pkgs.swaylock}/bin/swaylock -fF";
+        command = "${pkgs.swaylock}/bin/swaylock -fF";
       }
       {
         timeout = 300;

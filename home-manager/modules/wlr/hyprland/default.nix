@@ -1,12 +1,17 @@
-{ lib, useHyprland, wallpaper, configName, ... }:
+{ config, lib, useHyprland, wallpaper, configName, ... }:
 
 let
+  mkRule = lib.foldlAttrs (acc: app: rule: acc ++ [ "${rule},^(${app})$" ]) [ ];
+  global = (import ../globals.nix) wallpaper;
+
+  # This function takes a function with 1 arg and returns a list with every string
+  # generated with that arg ranging from lowerBound to upperBound
   getStringBetween = lowerBound: higherBound: stringGen:
     (builtins.genList (x: let ws = toString (x + lowerBound); in (stringGen ws))
       higherBound);
-
-  mkRule = lib.foldlAttrs (acc: app: rule: acc ++ [ "${rule},^(${app})$" ]) [ ];
 in {
+  imports = [ ./dunst.nix ];
+
   config = lib.mkIf (useHyprland) {
     wayland.windowManager.hyprland = {
       # TODO: Add actual color to the tabs
@@ -14,20 +19,13 @@ in {
       settings = {
         general.allow_tearing = true;
 
-        exec-once = let
-          videoWallpaper = ''
-            mpvpaper '*' ${wallpaper} -o "loop=yes"
-          '';
-          normalWallpaper = ''
-            swaybg -i ${wallpaper} -m fill
-          '';
-        in [
+        exec-once = [
           "nm-applet"
           "blueman-applet"
           "gammastep"
           "waybar"
           "swayidle"
-          normalWallpaper
+          global.vars.normalWallpaper
         ];
 
         monitor = [ ",highrr,auto,1" ];
@@ -78,16 +76,13 @@ in {
         bind = let
           mod1 = "SUPER";
           mod2 = "ALT";
-          terminal = "kitty";
-          launcher = "wofi";
-          lock = "swaylock -fF";
         in [
-          "${mod1},RETURN,exec,${terminal}"
-          "${mod1},D,exec,${launcher}"
+          "${mod1},RETURN,exec,${global.vars.terminal}"
+          "${mod1},D,exec,${global.vars.launcher}"
           "${mod1}_SHIFT,N,exec,firefox -p frozsnow"
-          "${mod1},E,exec,dolphin"
-          "${mod1}_SHIFT,L,exec,${lock}"
-          "${mod1}_SHIFT,S,exec,grimblast --notify copy area"
+          "${mod1},E,exec,${global.vars.fileManager}"
+          "${mod1}_SHIFT,L,exec,${global.vars.lock}"
+          "${mod1}_SHIFT,S,exec,${global.vars.screenshot}"
 
           "${mod1},Q,killactive"
           "${mod1},F,fullscreen"
@@ -125,7 +120,10 @@ in {
         (getStringBetween 1 9 (ws: "${mod1},${ws},workspace,${ws}")) ++
         # WIN+SHIFT+NUM MOVETOWORKSPACESHORTCUTS
         (getStringBetween 1 9 (ws: "${mod1}SHIFT,${ws},movetoworkspace,${ws}"))
-        ++ [
+        ++
+
+        # Weird keys
+        [
           ", XF86AudioPlay, exec, playerctl play-pause"
           ", XF86AudioPrev, exec, playerctl previous"
           ", XF86AudioNext, exec, playerctl next"

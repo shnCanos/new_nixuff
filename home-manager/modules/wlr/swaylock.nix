@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, useSway, useHyprland, ... }: {
   programs.swaylock = {
-    enable = true;
+    enable = useSway || useHyprland;
     package = pkgs.swaylock-effects;
 
     settings = {

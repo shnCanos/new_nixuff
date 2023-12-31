@@ -8,7 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     my-nixvim-config.url = "github:shnCanos/myNixVimConfig";
-
     stylix.url = "github:danth/stylix";
   };
 
@@ -20,8 +19,8 @@
       nixuffPath = "${homePath}/new_nixuff";
       wallpaper = ./home-manager/backgrounds/fusion.png;
       usePlasma = false;
-      useHyprland = true;
-      useSway = false; # WIP
+      useHyprland = false;
+      useSway = true; # WIP
 
       pkgs = import nixpkgs {
         system = system;

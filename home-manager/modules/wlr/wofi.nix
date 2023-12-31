@@ -1,6 +1,6 @@
-{ ... }: {
+{ useSway, useHyprland, ... }: {
   programs.wofi = {
-    enable = true;
+    enable = useSway || useHyprland;
     settings = {
       width = 600;
       height = 300;

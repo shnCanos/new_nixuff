@@ -1,6 +1,6 @@
-{ ... }: {
+{ useSway, useHyprland, ... }: {
   services.gammastep = {
-    enable = true;
+    enable = useSway || useHyprland;
     dawnTime = "7:00-9:00";
     duskTime = "17:30-18:00";
     temperature = {

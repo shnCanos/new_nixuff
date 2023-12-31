@@ -60,6 +60,7 @@ let
 
       # Rust
       cargo
+      gcc
 
       # Dependencies
       lld

@@ -1,6 +1,12 @@
-{ ... }: {
+{ useSway, useHyprland, wallpaper, ... }:
+let
+  global = import ../globals.nix wallpaper;
+
+  current = if (useSway) then "sway" else "hyprland";
+  center = if (useHyprland) then "cava" else "${current}/window";
+in {
   programs.waybar = {
-    enable = true;
+    enable = useSway || useHyprland;
     # TODO:
     # Add Apps (maybe)
     # Add media (maybe)
@@ -10,43 +16,70 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [ "${current}/workspaces" ];
+        modules-center = [ center ];
         modules-right = [
           "pulseaudio"
           "pulseaudio#microphone"
           "custom/separator"
+          "network"
+          "cpu"
           "battery"
           "custom/separator"
-          "hyprland/language"
+          "${current}/language"
           "tray"
           "custom/separator"
           "clock"
+          "custom/separator"
+          "idle_inhibitor"
+          "custom/powermenu"
         ];
 
-        "hyprland/window" = { "format" = "{}"; };
-        "hyprland/language" = {
+        "custom/powermenu" = {
+          format = "  ";
+          interval = "once";
+          tooltip = true;
+          on-click = ./powermenu.sh;
+        };
+
+        cava = {
+          framerate = 30;
+          bars = 20;
+          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+          bar_delimiter = 0;
+        };
+
+        network = {
+          format = "{ifname}";
+          format-wifi = "{icon} {signalStrength}%";
+          format-ethernet = "󰈁";
+          format-disconnected = "󰤭 ";
+          format-icons = [ "󰤫 " "󰤟 " "󰤢 " "󰤥 " "󰤨 " ];
+        };
+
+        cpu.format = "  {usage}%";
+
+        "${current}/window" = { "format" = "{app_id}"; };
+        "${current}/language" = {
           format = "{}";
 
           # NOTE: It needs the space for some reason
           format-en = "🇺🇸";
           format-pt = "🇵🇹";
         };
-        "hyprland/workspaces" = {
+        "${current}/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
           on-click = "activate";
           format = "{icon}";
+          format-icons = global.workspaces;
+        };
+
+        idle_inhibitor = {
+          format = "{icon}";
           format-icons = {
-            "1" = "󰈹 ";
-            "2" = "󰙯 ";
-            "3" = " ";
-            "4" = "󰣼 ";
-            "5" = "󰖺 ";
-            "6" = "󰣼 ";
-            "7" = " ";
-            "8" = "󰎆 ";
-            "9" = " ";
+            activated = "󰅶 ";
+            deactivated = "󰾪 ";
           };
         };
 
