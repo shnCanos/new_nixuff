@@ -6,6 +6,7 @@ let
       mpv
       teamspeak5_client
       discover
+      discord
       kcalc
     ] ++
 

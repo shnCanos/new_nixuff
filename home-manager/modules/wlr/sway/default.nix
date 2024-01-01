@@ -21,6 +21,10 @@ in {
       config = {
         defaultWorkspace = "workspace number 1";
 
+        output = lib.mkIf (configName == "main") {
+          DP-3 = { res = "1920x1080@144Hz"; };
+        };
+
         bars = [ ];
 
         floating.criteria =
@@ -40,8 +44,8 @@ in {
           "*" = {
             xkb_layout = "us,pt";
             xkb_options = "grp:win_space_toggle";
-            # pointer_accel_profile = "flat";
-            natural_scroll = "enable";
+            accel_profile = lib.mkIf (configName == "main") "flat";
+            natural_scroll = lib.mkIf (configName != "main") "enable";
             tap = "enable";
             drag = "enable";
           };
