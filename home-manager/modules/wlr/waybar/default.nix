@@ -4,6 +4,14 @@ let
 
   current = if (useSway) then "sway" else "hyprland";
   center = if (useHyprland) then "cava" else "${current}/window";
+
+  # Pallete
+  mkColor = color: icon: ''<span foreground="${color}">${icon}</span>'';
+  colors = {
+    red = "red";
+    brown = "#cfb484";
+    orange = "orange";
+  };
 in {
   programs.waybar = {
     enable = useSway || useHyprland;
@@ -58,6 +66,7 @@ in {
         };
 
         cpu.format = "  {usage}%";
+        cpu.interval = 3;
 
         "${current}/window" = { "format" = "{app_id}"; };
         "${current}/language" = {
@@ -78,7 +87,7 @@ in {
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "󰅶 ";
+            activated = mkColor colors.brown "󰅶 ";
             deactivated = "󰾪 ";
           };
         };
@@ -97,7 +106,7 @@ in {
         "pulseaudio#microphone" = {
           format = "{format_source}";
           format-source = " {volume}%";
-          format-source-muted = " Muted";
+          format-source-muted = mkColor colors.orange " Muted";
           on-click = "pamixer --default-source -t";
           on-scroll-up = "pamixer --default-source -i 5";
           on-scroll-down = "pamixer --default-source -d 5";
@@ -117,17 +126,30 @@ in {
             warning = 30;
             critical = 20;
           };
+          interval = 10;
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
           format-alt = "{time} {icon}";
-          format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            (mkColor colors.red "󰂃")
+            (mkColor colors.red "󰁺")
+            (mkColor colors.red "󰁻")
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
         };
 
         pulseaudio = {
           format = "{icon} {volume}%";
           tooltip = false;
-          format-muted = " Muted";
+          format-muted = mkColor colors.orange "󰝟 Muted";
           on-click = "pamixer -t";
           format-icons = {
             headphone = "";

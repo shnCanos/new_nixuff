@@ -64,6 +64,7 @@ in {
           "${mod1}+d" = "exec ${vars.launcher}";
           # "${mod1}+Shift+l" = "exec ${vars.lock}"; # TODO: Create menu
           "${mod1}+Shift+s" = "exec ${vars.screenshot}";
+          "${mod1}+Shift+n" = "exec firefox -p frozsnow";
 
           "${mod1}+q" = "kill";
           "${mod1}+Shift+c" = "reload";
@@ -77,8 +78,7 @@ in {
           "${mod1}+v" = "splitv";
 
           "${mod1}+s" = "layout stacking";
-
-          "${mod1}+e " = "layout toggle split";
+          "${mod1}+e" = "layout toggle split";
           # TODO: move workspaces with super+ctrl
           # TODO: move to workspaces with super+shift+ctrl
 

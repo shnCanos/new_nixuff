@@ -1,23 +1,22 @@
-{ pkgs, useSway, useHyprland, ... }: {
-  services.swayidle = {
+{ pkgs, useSway, useHyprland, wallpaper, ... }: {
+  services.swayidle = let
+    global = import ./globals.nix wallpaper;
+    vars = global.vars;
+  in {
     enable = useSway || useHyprland;
     events = [{
       event = "before-sleep";
-      command = "${pkgs.swaylock}/bin/swaylock -fF";
+      command = "${vars.lock}";
     }];
 
     timeouts = [
       {
-        timeout = 60;
+        timeout = 180;
         command = "${pkgs.brightnessctl}/bin/brightnessctl set 1%";
       }
       {
-        timeout = 120;
-        command = "${pkgs.swaylock}/bin/swaylock -fF";
-      }
-      {
         timeout = 300;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
+        command = "${vars.lock} && ${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
   };
