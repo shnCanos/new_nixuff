@@ -21,9 +21,6 @@
     services.blueman.enable = true;
     programs.nm-applet.enable = true;
 
-    # tlp does not like plasma
-    services.tlp.enable = !usePlasma;
-
     # Unnecessary with sway
     security.pam.services.swaylock = lib.mkIf (useHyprland) { };
   };

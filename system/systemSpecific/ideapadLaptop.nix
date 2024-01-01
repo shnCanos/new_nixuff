@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, usePlasma, ... }:
 
 {
   # Setup keyfile
@@ -22,8 +22,8 @@
   # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   # services.blueman.enable = true;
 
-  # Battery
-  # services.tlp.enable = true;
+  # tlp does not like plasma
+  services.tlp.enable = !usePlasma;
 
   services.throttled.enable =
     true; # Workaround for intel cpu issues, or something?
