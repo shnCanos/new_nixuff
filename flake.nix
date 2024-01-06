@@ -54,8 +54,7 @@
 
           modules = [
             ./system
-            # HACK: so I can use configName like that
-            "${nixuffPath}/system/systemSpecific/${configName}.nix"
+            "${./hosts}/${configName}.nix"
             home-manager.nixosModules.home-manager
             {
               home-manager = {
