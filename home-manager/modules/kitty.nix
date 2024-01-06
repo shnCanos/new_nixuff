@@ -14,6 +14,8 @@
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
       # <<TAB BAR
+
+      confirm_os_window_close = 0;
     };
   };
 }

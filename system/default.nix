@@ -1,4 +1,4 @@
-{ inputs, useHyprland, useSway, ... }:
+{ useHyprland, useSway, ... }:
 
 {
   assertions = [{

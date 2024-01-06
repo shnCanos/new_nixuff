@@ -7,6 +7,7 @@
     ./xobs
     ./bash
     ./wlr
+    # ./nushell
 
     ./firefox.nix
     ./git.nix

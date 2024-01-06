@@ -106,7 +106,7 @@ let
 in {
   programs.vscode = {
     enable = true;
-    # package = pkgs.vscode.fhs;
+    package = pkgs.vscode.fhs;
     extensions = with pkgs.vscode-extensions;
       [
         # Language support
@@ -175,6 +175,7 @@ in {
 
       # Vscode Neovim
       "vscode-neovim.neovimInitVimPaths.linux" = ./init.vim;
+      "extensions.experimental.affinity"."asvetliakov.vscode-neovim" = 1;
 
       # Nix-IDE
       "nix.enableLanguageServer" = true;

@@ -2,11 +2,13 @@
   services.swayidle = let
     global = import ./globals.nix wallpaper;
     vars = global.vars;
+    lock_command = "${pkgs.swaylock}/bin/${vars.lock}";
   in {
     enable = useSway || useHyprland;
+
     events = [{
       event = "before-sleep";
-      command = "${vars.lock}";
+      command = "${lock_command}";
     }];
 
     timeouts = [
@@ -16,7 +18,7 @@
       }
       {
         timeout = 300;
-        command = "${vars.lock} && ${pkgs.systemd}/bin/systemctl suspend";
+        command = "${lock_command} && ${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
   };

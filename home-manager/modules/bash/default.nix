@@ -1,4 +1,4 @@
-{ nixuffPath, configName, ... }: {
+{ config, nixuffPath, configName, ... }: {
   programs = {
     bash = {
       enable = true;
@@ -34,6 +34,9 @@
   home = {
     sessionVariables = {
       EDITOR = "nvim";
+      BROWSER = "firefox";
+      TERMINAL = "kitty";
+      TERM = config.home.sessionVariables.TERMINAL;
 
       # My precious and necessary motivation
       SHELL_MOMMYS_LITTLE = "cute little anime πx developer";
@@ -78,6 +81,7 @@
       vim = "nix run ~/myNixVimConfig"; # HACK
       nupdate =
         "nix flake update ${nixuffPath} && nix flake update ~/myNixVimConfig/";
+      code = "code --ozone-platform=x11";
     };
   };
 }

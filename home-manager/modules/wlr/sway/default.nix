@@ -1,4 +1,4 @@
-{ lib, config, wallpaper, useSway, configName, ... }:
+{ lib, config, wallpaper, useSway, configName, isDesktop, ... }:
 
 let
   addWsNumber = lib.foldlAttrs
@@ -10,7 +10,6 @@ let
   # I add numbers so it gets ordered
   ws = addWsNumber global.workspaces;
   vars = global.vars;
-  wallpaper_command = global.vars.normalWallpaper;
 in {
   imports = [ ./mako.nix ];
 
@@ -27,8 +26,11 @@ in {
 
         bars = [ ];
 
-        floating.criteria =
-          [ { class = "org.kde.dolphin"; } { class = "blueman"; } ];
+        floating.criteria = [
+          { class = "org.kde.dolphin"; }
+          { class = "blueman"; }
+          { app_id = "org.gnome.Nautilus"; }
+        ];
 
         assigns = {
           "${ws."2"}" = [{ class = "^discord$"; }];
@@ -44,8 +46,8 @@ in {
           "*" = {
             xkb_layout = "us,pt";
             xkb_options = "grp:win_space_toggle";
-            accel_profile = lib.mkIf (configName == "main") "flat";
-            natural_scroll = lib.mkIf (configName != "main") "enable";
+            accel_profile = lib.mkIf (isDesktop) "flat";
+            natural_scroll = lib.mkIf (!isDesktop) "enable";
             tap = "enable";
             drag = "enable";
           };
@@ -55,7 +57,7 @@ in {
         modifier = "Mod4";
         seat."*".hide_cursor = "when-typing enable";
         terminal = global.vars.terminal;
-        workspaceAutoBackAndForth = true;
+        workspaceAutoBackAndForth = false; # :(
         window = { titlebar = false; };
 
         startup = [ { command = "waybar"; } { command = "blueman-applet"; } ];
@@ -66,6 +68,7 @@ in {
         in {
           "${mod1}+Return" = "exec ${vars.terminal}";
           "${mod1}+d" = "exec ${vars.launcher}";
+          "${mod1}+n" = "exec ${vars.fileManager}";
           # "${mod1}+Shift+l" = "exec ${vars.lock}"; # TODO: Create menu
           "${mod1}+Shift+s" = "exec ${vars.screenshot}";
           "${mod1}+Shift+n" = "exec firefox -p frozsnow";

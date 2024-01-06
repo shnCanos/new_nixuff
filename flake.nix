@@ -14,32 +14,43 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (nixpkgs) lib;
-      system = "x86_64-linux";
-      homePath = "/home/canos";
-      nixuffPath = "${homePath}/new_nixuff";
-      wallpaper = ./home-manager/backgrounds/fusion.png;
-      usePlasma = false;
-      useHyprland = false;
-      useSway = true; # WIP
 
-      pkgs = import nixpkgs {
-        system = system;
-        config = { allowUnfree = true; };
-        overlays = [
-          (final: prev: {
-            # My precious and necessary motivation
-            shell-mommy = final.callPackage ./derivations/shell-mommy.nix { };
-          })
-        ];
-      };
+      mkConfig = { system,
+        # Path to $HOME
+        homePath,
 
-      mkConfig = configName:
-        lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs pkgs homePath nixuffPath wallpaper usePlasma
-              useHyprland useSway;
+        # The name of the configuration
+        configName,
+
+        # Desktop or Laptop?
+        isDesktop,
+
+        # Desktop environments
+        useSway, useHyprland, usePlasma,
+
+        # Where this repo is located
+        nixuffPath,
+
+        # Path to wallpaper
+        wallpaper }@systemArgs:
+
+        let
+          pkgs = import nixpkgs {
+            system = system;
+            config = { allowUnfree = true; };
+            overlays = [
+              (final: prev: {
+                # My precious and necessary motivation
+                shell-mommy =
+                  final.callPackage ./derivations/shell-mommy.nix { };
+              })
+            ];
           };
+
+          extraArgs = systemArgs // inputs // { inherit pkgs; };
+        in lib.nixosSystem {
+          inherit system;
+          specialArgs = extraArgs;
 
           modules = [
             ./system
@@ -48,10 +59,7 @@
             home-manager.nixosModules.home-manager
             {
               home-manager = {
-                extraSpecialArgs = {
-                  inherit inputs homePath nixuffPath wallpaper configName system
-                    useHyprland useSway;
-                };
+                extraSpecialArgs = extraArgs;
                 useGlobalPkgs = true;
                 useUserPackages = true;
 
@@ -63,8 +71,44 @@
           ];
         };
     in {
-      nixosConfigurations.main = mkConfig "main";
-      nixosConfigurations.hpLaptop = mkConfig "hpLaptop";
-      nixosConfigurations.ideapadLaptop = mkConfig "ideapadLaptop";
+      nixosConfigurations.main = mkConfig rec {
+        configName = "main";
+        isDesktop = true;
+        system = "x86_64-linux";
+        homePath = "/home/canos";
+        nixuffPath = "${homePath}/new_nixuff";
+        wallpaper = ./home-manager/backgrounds/fusion.png;
+        useHyprland = true;
+
+        usePlasma = false;
+        useSway = false;
+
+      };
+
+      nixosConfigurations.hpLaptop = mkConfig rec {
+        configName = "hpLaptop";
+        system = "x86_64-linux";
+        homePath = "/home/canos";
+        nixuffPath = "${homePath}/new_nixuff";
+        wallpaper = ./home-manager/backgrounds/fusion.png;
+        useHyprland = true;
+
+        isDesktop = false;
+        usePlasma = false;
+        useSway = false;
+      };
+
+      nixosConfigurations.ideapadLaptop = mkConfig rec {
+        configName = "ideapadLaptop";
+        system = "x86_64-linux";
+        homePath = "/home/canos";
+        nixuffPath = "${homePath}/new_nixuff";
+        wallpaper = ./home-manager/backgrounds/fusion.png;
+        useHyprland = true;
+
+        useSway = false;
+        isDesktop = false;
+        usePlasma = false;
+      };
     };
 }

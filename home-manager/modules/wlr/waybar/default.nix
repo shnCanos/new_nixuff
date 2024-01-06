@@ -3,7 +3,6 @@ let
   global = import ../globals.nix wallpaper;
 
   current = if (useSway) then "sway" else "hyprland";
-  center = if (useHyprland) then "cava" else "${current}/window";
 
   # Pallete
   mkColor = color: icon: ''<span foreground="${color}">${icon}</span>'';
@@ -24,15 +23,19 @@ in {
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = [ "${current}/workspaces" ];
-        modules-center = [ center ];
+        modules-left = [
+          "network"
+          "backlight"
+          "custom/separator2"
+          "cpu"
+          "memory"
+          "custom/separator2"
+          "battery"
+        ];
+        modules-center = [ "${current}/workspaces" ];
         modules-right = [
           "pulseaudio"
           "pulseaudio#microphone"
-          "custom/separator"
-          "network"
-          "cpu"
-          "battery"
           "custom/separator"
           "${current}/language"
           "tray"
@@ -44,15 +47,27 @@ in {
         ];
 
         "custom/powermenu" = {
+          # wofi -D hide_search=true
           format = "  ";
           interval = "once";
           tooltip = true;
-          on-click = ./powermenu.sh;
+          on-click = global.funcs.powermenu { in_corner = true; };
+        };
+
+        memory = {
+          interval = 3;
+          format = "󰭣  {used:0.1f}G";
+        };
+
+        backlight = {
+          device = "intel_backlight";
+          format = "{icon} {percent}%";
+          format-icons = [ "󰃞 " "󰃟 " "󰃝 " "󰃠 " ];
         };
 
         cava = {
           framerate = 30;
-          bars = 20;
+          bars = 30;
           format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
           bar_delimiter = 0;
         };
@@ -99,6 +114,12 @@ in {
 
         "custom/separator" = {
           format = "  ";
+          interval = "once";
+          tooltip = false;
+        };
+
+        "custom/separator2" = {
+          format = "  ";
           interval = "once";
           tooltip = false;
         };

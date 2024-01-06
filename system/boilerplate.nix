@@ -1,8 +1,9 @@
-{ ... }: {
+{ pkgs, ... }: {
   users.users = {
     canos = {
       isNormalUser = true;
       description = "canos";
+      # shell = pkgs.nushell;
       extraGroups = [
         # Default
         "networkmanager"

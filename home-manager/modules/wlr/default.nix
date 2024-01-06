@@ -20,7 +20,11 @@
       # KDE
       okular
       gwenview
-      libsForQt5.dolphin
+      qt5.qtwayland
+      # libsForQt5.dolphin
+
+      # GNOME
+      gnome.nautilus
 
       ranger
       libnotify

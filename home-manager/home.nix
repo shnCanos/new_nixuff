@@ -1,9 +1,9 @@
-{ config, homePath, nixuffPath, inputs, system, wallpaper, pkgs, ... }:
+{ config, my-nixvim-config, homePath, nixuffPath, system, ... }:
 
 {
   imports = [ ./modules ];
 
-  home.packages = [ inputs.my-nixvim-config.packages."${system}".default ];
+  home.packages = [ my-nixvim-config.packages."${system}".default ];
 
   home.username = "canos";
   home.homeDirectory = homePath;

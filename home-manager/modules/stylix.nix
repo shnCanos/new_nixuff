@@ -1,4 +1,4 @@
-{ inputs, wallpaper, pkgs, ... }:
+{ stylix, wallpaper, pkgs, ... }:
 
 let
   nerdFont = name: {
@@ -9,10 +9,12 @@ let
   jetBrainsMono = nerdFont "JetBrainsMono";
 in {
   # imports = [ inputs.stylix.nixosModules.stylix ];
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ stylix.homeManagerModules.stylix ];
 
   stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+    # "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     image = wallpaper;
 
     fonts = {
