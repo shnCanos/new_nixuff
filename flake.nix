@@ -90,10 +90,10 @@
         homePath = "/home/canos";
         nixuffPath = "${homePath}/new_nixuff";
         wallpaper = ./home-manager/backgrounds/fusion.png;
-        useHyprland = true;
+        usePlasma = true;
 
         isDesktop = false;
-        usePlasma = false;
+        useHyprland = true;
         useSway = false;
       };
 
