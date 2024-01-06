@@ -48,12 +48,14 @@ in {
           "easeOutBack,0.34,1.56,0.64,1"
           "easeOutQuart,0.25,1,0.5,1"
           "easeInOutExpo,0.87,0,0.13,1"
+          "easeInOutBack,0.68,-0.6,0.32,1.6"
+          "easeOutQuint,0.22,1,0.36,1"
         ];
         animation = [
           "workspaces,1,4,default,slidefade"
           "windowsIn,1,4,easeOutBack,slide"
-          "windowsOut,1,4,easeOutBack,slide"
-          "windowsMove,1,2,easeOutQuart,slide"
+          "windowsOut,1,4,easeInOutBack,slide"
+          "windowsMove,1,3,easeOutBack,slide"
         ];
 
         gestures = {
