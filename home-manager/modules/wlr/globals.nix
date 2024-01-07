@@ -22,11 +22,11 @@ rec {
       swaybg -i ${wallpaperFile} -m fill
     '';
 
-    mkWallpaper = wallpaper:
-      if wallpaper.isVideo then
-        (funcs.videoWallpaperCommand wallpaper.file)
+    mkWallpaper = { file, isVideo }:
+      if isVideo then
+        (funcs.videoWallpaperCommand file)
       else
-        (funcs.normalWallpaperCommand wallpaper.file);
+        (funcs.normalWallpaperCommand file);
   };
 
   workspaces = {
