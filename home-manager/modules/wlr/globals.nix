@@ -1,4 +1,4 @@
-wallpaper: rec {
+rec {
   vars = {
     terminal = "kitty";
     launcher = "wofi";
@@ -7,13 +7,6 @@ wallpaper: rec {
     fileManager = "nautilus";
     screenshot = "grimblast --notify copy area";
     otherFirefox = "firefox -p frozsnow";
-
-    videoWallpaper = ''
-      mpvpaper '*' ${wallpaper} -o "loop=yes"
-    '';
-    normalWallpaper = ''
-      swaybg -i ${wallpaper} -m fill
-    '';
   };
 
   funcs = {
@@ -21,6 +14,19 @@ wallpaper: rec {
       "${./powermenu.sh} '${vars.lock}' '${vars.exit}' ${
         if in_corner then "true" else "false"
       }";
+
+    videoWallpaperCommand = wallpaperFile: ''
+      mpvpaper '*' ${wallpaperFile} -o "loop=yes"
+    '';
+    normalWallpaperCommand = wallpaperFile: ''
+      swaybg -i ${wallpaperFile} -m fill
+    '';
+
+    mkWallpaper = wallpaper:
+      if wallpaper.isVideo then
+        (funcs.videoWallpaperCommand wallpaper.file)
+      else
+        (funcs.normalWallpaperCommand wallpaper.file);
   };
 
   workspaces = {

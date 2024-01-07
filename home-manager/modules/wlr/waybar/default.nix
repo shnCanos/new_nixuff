@@ -1,6 +1,6 @@
 { useSway, useHyprland, wallpaper, ... }:
 let
-  global = import ../globals.nix wallpaper;
+  global = import ../globals.nix;
 
   current = if (useSway) then "sway" else "hyprland";
 

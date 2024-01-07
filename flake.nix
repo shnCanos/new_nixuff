@@ -31,7 +31,9 @@
         # Where this repo is located
         nixuffPath,
 
-        # Path to wallpaper
+        # wallpaper.file = path to wallpaper
+        # WARNING: untested
+        # wallpaper.isVideo = whether the wallpaper is a video 
         wallpaper }@systemArgs:
 
         let
@@ -76,7 +78,10 @@
         system = "x86_64-linux";
         homePath = "/home/canos";
         nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = ./home-manager/backgrounds/fusion.png;
+        wallpaper = {
+          file = ./home-manager/backgrounds/fusion.png;
+          isVideo = false;
+        };
         useHyprland = true;
 
         usePlasma = false;
@@ -89,7 +94,10 @@
         system = "x86_64-linux";
         homePath = "/home/canos";
         nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = ./home-manager/backgrounds/fusion.png;
+        wallpaper = {
+          file = ./home-manager/backgrounds/fusion.png;
+          isVideo = false;
+        };
         usePlasma = true;
 
         isDesktop = false;
@@ -102,7 +110,10 @@
         system = "x86_64-linux";
         homePath = "/home/canos";
         nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = ./home-manager/backgrounds/fusion.png;
+        wallpaper = {
+          file = ./home-manager/backgrounds/fusion.png;
+          isVideo = false;
+        };
         useHyprland = true;
 
         useSway = false;

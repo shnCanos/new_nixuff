@@ -15,7 +15,7 @@ in {
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     # "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
-    image = wallpaper;
+    image = wallpaper.file;
 
     fonts = {
       serif = firaCode;

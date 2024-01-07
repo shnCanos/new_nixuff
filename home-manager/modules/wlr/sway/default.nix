@@ -5,7 +5,7 @@ let
     (acc: wsNumber: icon: acc // { "${wsNumber}" = "${wsNumber}: ${icon}"; })
     { };
 
-  global = import ../globals.nix wallpaper;
+  global = import ../globals.nix;
 
   # I add numbers so it gets ordered
   ws = addWsNumber global.workspaces;

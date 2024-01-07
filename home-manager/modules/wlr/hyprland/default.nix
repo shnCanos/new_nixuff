@@ -2,7 +2,7 @@
 
 let
   mkRule = lib.foldlAttrs (acc: app: rule: acc ++ [ "${rule},^(${app})$" ]) [ ];
-  global = (import ../globals.nix) wallpaper;
+  global = import ../globals.nix;
   vars = global.vars;
 
 in {
@@ -25,7 +25,7 @@ in {
           "gammastep"
           "waybar"
           "swayidle"
-          vars.normalWallpaper
+          (global.funcs.mkWallpaper wallpaper)
         ];
 
         monitor = [ ",highrr,auto,1" ];

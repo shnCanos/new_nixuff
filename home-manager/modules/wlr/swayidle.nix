@@ -1,6 +1,6 @@
 { pkgs, useSway, useHyprland, wallpaper, ... }: {
   services.swayidle = let
-    global = import ./globals.nix wallpaper;
+    global = import ./globals.nix;
     vars = global.vars;
     lock_command = "${pkgs.swaylock}/bin/${vars.lock}";
   in {

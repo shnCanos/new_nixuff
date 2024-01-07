@@ -4,7 +4,7 @@ let
   mod2 = "ALT";
   powermenu = global.funcs.powermenu { in_corner = false; };
 
-  global = (import ../globals.nix) wallpaper;
+  global = import ../globals.nix;
   vars = global.vars;
 
   # This function takes a function with 1 arg and returns a list with every string
