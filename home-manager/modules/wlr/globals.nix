@@ -3,7 +3,7 @@ rec {
     terminal = "kitty";
     launcher = "wofi";
     lock = "swaylock -fF";
-    exit = "sway exit ; hyprctl dispatch exit"; # both
+    exit = "hyprctl dispatch exit ; sway exit"; # both
     fileManager = "nautilus";
     screenshot = "grimblast --notify copy area";
     otherFirefox = "firefox -p frozsnow";
