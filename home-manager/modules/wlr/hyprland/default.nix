@@ -77,7 +77,9 @@ in {
             "org.kde.gwenview" = "float";
             blueman = "float";
             discord = "workspace 2";
-            steam = "workspace 5";
+            # Whenever someone went online,
+            # This would bring me to the 5th desktop
+            # steam = "workspace 5";
           };
 
       };
