@@ -26,6 +26,9 @@ in {
           "waybar"
           "swayidle"
           (global.funcs.mkWallpaper wallpaper)
+
+          "[workspace 1 silent] firefox"
+          "[workspace 3 silent] kitty"
         ];
 
         monitor = [ ",highrr,auto,1" ];

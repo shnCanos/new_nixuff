@@ -2,7 +2,6 @@
 let
   mod1 = "SUPER";
   mod2 = "ALT";
-  powermenu = global.funcs.powermenu { in_corner = false; };
 
   global = import ../globals.nix;
   vars = global.vars;
@@ -32,7 +31,7 @@ in {
 
       "${mod1},Q,killactive"
       "${mod1},F,fullscreen"
-      "${mod1}_SHIFT,E,exec,${powermenu}"
+      "${mod1}_SHIFT,E,exec,${global.funcs.powermenu { in_corner = false; }}"
       "${mod2},F,togglefloating"
 
       "${mod1}_CTRL,H,workspace,-1"
