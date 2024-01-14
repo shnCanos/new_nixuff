@@ -14,7 +14,8 @@
     timeouts = [
       {
         timeout = 180;
-        command = "${pkgs.brightnessctl}/bin/brightnessctl set 1%";
+        command = let brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+        in "${brightnessctl} --save && ${brightnessctl} set 1%";
       }
       {
         timeout = 300;

@@ -1,4 +1,4 @@
-{ wallpaper, ... }:
+{ wallpaper, useHyprland, ... }:
 let
   mod1 = "SUPER";
   mod2 = "ALT";
@@ -31,7 +31,12 @@ in {
 
       "${mod1},Q,killactive"
       "${mod1},F,fullscreen"
-      "${mod1}_SHIFT,E,exec,${global.funcs.powermenu { in_corner = false; }}"
+      "${mod1}_SHIFT,E,exec,${
+        global.funcs.powermenu {
+          in_corner = false;
+          inherit useHyprland;
+        }
+      }"
       "${mod2},F,togglefloating"
 
       "${mod1}_CTRL,H,workspace,-1"

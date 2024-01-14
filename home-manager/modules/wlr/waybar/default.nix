@@ -51,7 +51,10 @@ in {
           format = "  ";
           interval = "once";
           tooltip = true;
-          on-click = global.funcs.powermenu { in_corner = true; };
+          on-click = global.funcs.powermenu {
+            in_corner = true;
+            inherit useHyprland;
+          };
         };
 
         memory = {
