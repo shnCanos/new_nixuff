@@ -154,17 +154,21 @@ in {
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.lineNumbers" = "relative";
       "keyboard.dispatch" = "keyCode";
-      "workbench.colorTheme" = "Pastel";
+      "workbench.colorTheme" = lib.mkForce "Pastel";
       "editor.fontLigatures" = "true";
-      "editor.fontFamily" = "'Fira Code'";
-      "terminal.integrated.fontFamily" = "'Fira Code'";
+
+      # NOTE: Changed automatically by stylix
+      # "editor.fontFamily" = "'Fira Code'"; 
+      # "terminal.integrated.fontFamily" = "'Fira Code'";
+
       "editor.fontSize" = 15;
       "editor.minimap.enabled" = false;
       "telemetry.telemetryLevel" = "off";
       "terminal.external.linuxExec" = "kitty"; # Why does this not work?
       "terminal.explorerKind" = "integrated";
       "workbench.startupEditor" = "none";
-      "dart.flutterSdkPath" = pkgs.flutter-unwrapped.outPath;
+      "dart.flutterSdkPath" = pkgs.flutter.outPath; # WARNING: Untested
+
       # "dart.sdkPaths" = [ pkgs.flutter.outPath pkgs.dart.outPath ];
       # "dart.flutterSdkPath" = "${homePath}/Projects/github/flutter";
       # "dart.flutterSdkPath" = (pkgs.callPackage ../deriv/flutter.nix { }).outPath;
