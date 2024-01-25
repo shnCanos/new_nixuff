@@ -37,7 +37,7 @@ rec {
       swaybg -i ${wallpaperFile} -m fill
     '';
 
-    mkWallpaper = { file, isVideo }:
+    applyWallpaper = { file, isVideo }:
       if isVideo then
         (funcs.videoWallpaperCommand file)
       else

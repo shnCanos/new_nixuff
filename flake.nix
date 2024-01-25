@@ -15,27 +15,8 @@
     let
       inherit (nixpkgs) lib;
 
-      mkConfig = { system,
-        # Path to $HOME
-        homePath,
-
-        # The name of the configuration
-        configName,
-
-        # Desktop or Laptop?
-        isDesktop,
-
-        # Desktop environments
-        useSway, useHyprland, usePlasma,
-
-        # Where this repo is located
-        nixuffPath,
-
-        # wallpaper.file = path to wallpaper
-        # WARNING: untested
-        # wallpaper.isVideo = whether the wallpaper is a video 
-        wallpaper }@systemArgs:
-
+      mkConfig =
+        { system, extraSystemImports, extraHomeManagerImports, ... }@systemArgs:
         let
           pkgs = import nixpkgs {
             system = system;
@@ -56,7 +37,6 @@
 
           modules = [
             ./system
-            "${./hosts}/${configName}.nix"
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -65,12 +45,14 @@
                 useUserPackages = true;
 
                 users.canos = { ... }: {
-                  imports = [ ./home-manager/home.nix ];
+                  imports = [ ./home-manager/home.nix ]
+                    ++ extraHomeManagerImports;
                 };
               };
             }
-          ];
+          ] ++ extraSystemImports;
         };
+
     in {
       nixosConfigurations.main = mkConfig rec {
         configName = "main";
@@ -87,6 +69,8 @@
         usePlasma = false;
         useSway = false;
 
+        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+        extraHomeManagerImports = [ ];
       };
 
       nixosConfigurations.hpLaptop = mkConfig rec {
@@ -103,6 +87,9 @@
         isDesktop = false;
         useHyprland = true;
         useSway = false;
+
+        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+        extraHomeManagerImports = [ ];
       };
 
       nixosConfigurations.ideapadLaptop = mkConfig rec {
@@ -119,6 +106,9 @@
         useSway = false;
         isDesktop = false;
         usePlasma = false;
+
+        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+        extraHomeManagerImports = [ ];
       };
     };
 }

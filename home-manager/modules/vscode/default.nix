@@ -219,4 +219,11 @@ in {
     };
   };
 
+  xdg.desktopEntries.xvscode = {
+    name = "XCODE: Vscode on X11";
+    genericName = "Vscode not working workaround";
+    exec = config.home.shellAliases.code;
+    icon = "vscode";
+    terminal = false;
+  };
 }

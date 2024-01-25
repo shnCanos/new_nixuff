@@ -25,7 +25,7 @@ in {
           "gammastep"
           "waybar"
           "swayidle"
-          (global.funcs.mkWallpaper wallpaper)
+          (global.funcs.applyWallpaper wallpaper)
 
           "[workspace 1 silent] firefox"
           "[workspace 3 silent] kitty"
