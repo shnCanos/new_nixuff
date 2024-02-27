@@ -13,6 +13,7 @@ in {
 
   stylix = {
     base16Scheme =
+      # ./pastel.yaml;
       "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     # "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     image = wallpaper.file;

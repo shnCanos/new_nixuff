@@ -52,7 +52,6 @@
             }
           ] ++ extraSystemImports;
         };
-
     in {
       nixosConfigurations.main = mkConfig rec {
         configName = "main";

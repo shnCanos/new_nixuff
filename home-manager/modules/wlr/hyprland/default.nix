@@ -31,7 +31,10 @@ in {
           "[workspace 3 silent] kitty"
         ];
 
-        monitor = [ ",highrr,auto,1" ];
+        monitor = [
+          "desc:ASUSTek COMPUTER INC VG248 K4LMQS112536,highrr,auto,1,transform,3"
+          ",highrr,auto,1"
+        ];
 
         env = [
           "WLR_DRM_NO_ATOMIC,1"

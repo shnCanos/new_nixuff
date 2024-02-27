@@ -33,4 +33,41 @@
   #   kernelModules = [ "acpi_call" ];
   #   extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   # };
+
+  # services.samba-wsdd = {
+  #   # make shares visible for Windows clients
+  #   enable = true;
+  #   openFirewall = true;
+  # };
+  # services.samba = {
+  #   enable = true;
+  #   # securityType = "user";
+  #   # extraConfig = ''
+  #   #   security = user 
+  #   # '';
+  #   shares = {
+  #     public = {
+  #       path = "/home/canos/Public";
+  #       browseable = "yes";
+  #       "read only" = "no";
+  #       "guest ok" = "yes";
+  #       "create mask" = "0644";
+  #       "directory mask" = "0755";
+  #       "force user" = "canos";
+  #     };
+  #     # private = {
+  #     #   path = "/mnt/Shares/Private";
+  #     #   browseable = "yes";
+  #     #   "read only" = "no";
+  #     #   "guest ok" = "no";
+  #     #   "create mask" = "0644";
+  #     #   "directory mask" = "0755";
+  #     # };
+  #   };
+  # };
+  #
+  # networking.firewall.enable = true;
+  # networking.firewall.allowPing = true;
+  # services.samba.openFirewall = true;
+  # services.gvfs.enable = true;
 }

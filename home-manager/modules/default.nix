@@ -7,6 +7,7 @@
     ./xobs
     ./bash
     ./wlr
+    ./stylix
     # ./nushell
 
     ./firefox.nix
@@ -14,6 +15,5 @@
     ./kitty.nix
     ./mpv.nix
     ./lazygit.nix
-    ./stylix.nix
   ];
 }

@@ -1,7 +1,8 @@
-{ wallpaper, ... }: {
+{ wallpaper, lib, ... }: {
   programs.kitty = {
     enable = true;
     shellIntegration.enableBashIntegration = true;
+    theme = lib.mkForce "Catppuccin-Mocha";
     settings = {
       disable_ligatures = "never";
       # removed due to visual glitches
