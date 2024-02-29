@@ -8,6 +8,8 @@ let
       discover
       discord
       kcalc
+
+      cosmic-files
     ] ++
 
     # Cool stuff
