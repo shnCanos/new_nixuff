@@ -226,7 +226,7 @@ in {
   xdg.desktopEntries.xvscode = {
     name = "XCODE: Vscode on X11";
     genericName = "Vscode not working workaround";
-    exec = config.home.shellAliases.code;
+    exec = config.home.shellAliases.xcode;
     icon = "vscode";
     terminal = false;
   };

@@ -14,6 +14,13 @@
   programs = {
     home-manager.enable = true;
     tmux.enable = true;
+    # Shell history thing
+    # atuin.enable = true;
+    zellij = {
+      enable = true;
+      # enableBashIntegration = true;
+      settings = { default_cwd = "~"; };
+    };
   };
 
   xdg = {

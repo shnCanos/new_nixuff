@@ -34,9 +34,6 @@
       wofi
       grimblast
 
-      # TODO: Icons
-      tela-icon-theme
-
       # WARNING: High memory/cpu usage. should change unless I use videos
       mpvpaper
 

@@ -81,7 +81,7 @@
       vim = "nix run ~/myNixVimConfig"; # HACK
       nupdate =
         "nix flake update ${nixuffPath} && nix flake update ~/myNixVimConfig/";
-      code = "code --ozone-platform=x11";
+      xcode = "code --ozone-platform=x11";
     };
   };
 }

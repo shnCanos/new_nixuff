@@ -26,6 +26,9 @@
                 # My precious and necessary motivation
                 shell-mommy =
                   final.callPackage ./derivations/shell-mommy.nix { };
+                # My precious icons
+                reisen-cursors =
+                  final.callPackage ./derivations/reisen-cursors.nix { };
               })
             ];
           };
@@ -100,11 +103,11 @@
           file = ./home-manager/backgrounds/fusion.png;
           isVideo = false;
         };
-        useHyprland = true;
+        usePlasma = true;
 
+        useHyprland = false;
         useSway = false;
         isDesktop = false;
-        usePlasma = false;
 
         extraSystemImports = [ "${./hosts}/${configName}.nix" ];
         extraHomeManagerImports = [ ];

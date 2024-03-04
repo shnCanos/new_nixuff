@@ -14,6 +14,9 @@ let
 
     # Cool stuff
     [
+      # Icon theme
+      tela-icon-theme
+
       # CLI utils
       cowsay
       lolcat
@@ -37,6 +40,10 @@ let
       wget
       openssl # hmm
       ripgrep
+      fzf
+      dust
+      bat
+      tldr
 
       # Virtual machine
       virt-manager

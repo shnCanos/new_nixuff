@@ -28,8 +28,8 @@ in {
       };
     };
     cursor = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Reisen cursors";
+      package = pkgs.reisen-cursors;
       size = 16;
     };
   };
