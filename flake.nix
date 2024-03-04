@@ -105,8 +105,8 @@
         };
         usePlasma = true;
 
-        useHyprland = false;
         useSway = false;
+        useHyprland = false;
         isDesktop = false;
 
         extraSystemImports = [ "${./hosts}/${configName}.nix" ];
