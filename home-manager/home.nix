@@ -19,7 +19,10 @@
     zellij = {
       enable = true;
       # enableBashIntegration = true;
-      settings = { default_cwd = "~"; };
+      settings = {
+        default_cwd = "~";
+        # TODO: Panel stuff?
+      };
     };
   };
 

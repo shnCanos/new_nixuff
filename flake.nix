@@ -56,61 +56,64 @@
           ] ++ extraSystemImports;
         };
     in {
-      nixosConfigurations.main = mkConfig rec {
-        configName = "main";
-        isDesktop = true;
-        system = "x86_64-linux";
-        homePath = "/home/canos";
-        nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = {
-          file = ./home-manager/backgrounds/fusion.png;
-          isVideo = false;
+      nixosConfigurations = {
+
+        main = mkConfig rec {
+          configName = "main";
+          isDesktop = true;
+          system = "x86_64-linux";
+          homePath = "/home/canos";
+          nixuffPath = "${homePath}/new_nixuff";
+          wallpaper = {
+            file = ./home-manager/backgrounds/fusion.png;
+            isVideo = false;
+          };
+          useHyprland = true;
+
+          usePlasma = false;
+          useSway = false;
+
+          extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+          extraHomeManagerImports = [ ];
         };
-        useHyprland = true;
 
-        usePlasma = false;
-        useSway = false;
+        hpLaptop = mkConfig rec {
+          configName = "hpLaptop";
+          system = "x86_64-linux";
+          homePath = "/home/canos";
+          nixuffPath = "${homePath}/new_nixuff";
+          wallpaper = {
+            file = ./home-manager/backgrounds/fusion.png;
+            isVideo = false;
+          };
+          usePlasma = true;
 
-        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
-        extraHomeManagerImports = [ ];
-      };
+          isDesktop = false;
+          useHyprland = true;
+          useSway = false;
 
-      nixosConfigurations.hpLaptop = mkConfig rec {
-        configName = "hpLaptop";
-        system = "x86_64-linux";
-        homePath = "/home/canos";
-        nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = {
-          file = ./home-manager/backgrounds/fusion.png;
-          isVideo = false;
+          extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+          extraHomeManagerImports = [ ];
         };
-        usePlasma = true;
 
-        isDesktop = false;
-        useHyprland = true;
-        useSway = false;
+        ideapadLaptop = mkConfig rec {
+          configName = "ideapadLaptop";
+          system = "x86_64-linux";
+          homePath = "/home/canos";
+          nixuffPath = "${homePath}/new_nixuff";
+          wallpaper = {
+            file = ./home-manager/backgrounds/fusion.png;
+            isVideo = false;
+          };
+          usePlasma = true;
 
-        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
-        extraHomeManagerImports = [ ];
-      };
+          useSway = false;
+          useHyprland = false;
+          isDesktop = false;
 
-      nixosConfigurations.ideapadLaptop = mkConfig rec {
-        configName = "ideapadLaptop";
-        system = "x86_64-linux";
-        homePath = "/home/canos";
-        nixuffPath = "${homePath}/new_nixuff";
-        wallpaper = {
-          file = ./home-manager/backgrounds/fusion.png;
-          isVideo = false;
+          extraSystemImports = [ "${./hosts}/${configName}.nix" ];
+          extraHomeManagerImports = [ ];
         };
-        usePlasma = true;
-
-        useSway = false;
-        useHyprland = false;
-        isDesktop = false;
-
-        extraSystemImports = [ "${./hosts}/${configName}.nix" ];
-        extraHomeManagerImports = [ ];
       };
     };
 }
