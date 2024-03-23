@@ -19,9 +19,9 @@ in {
     image = wallpaper.file;
 
     fonts = {
-      serif = firaCode;
-      sansSerif = firaCode;
-      monospace = jetBrainsMono;
+      serif = jetBrainsMono;
+      sansSerif = jetBrainsMono;
+      monospace = firaCode;
       sizes = {
         terminal = 12;
         applications = 10;

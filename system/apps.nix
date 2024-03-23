@@ -1,7 +1,31 @@
 { config, pkgs, ... }:
 
+# TODO: Restructure this
 let
   apps = with pkgs;
+  # [
+  #   cosmic-bg
+  #   cosmic-osd
+  #   cosmic-term
+  #   cosmic-edit
+  #   cosmic-comp
+  #   cosmic-randr
+  #   cosmic-panel
+  #   cosmic-icons
+  #   cosmic-files
+  #   cosmic-session
+  #   cosmic-greeter
+  #   cosmic-applets
+  #   cosmic-settings
+  #   cosmic-launcher
+  #   cosmic-protocols
+  #   cosmic-screenshot
+  #   cosmic-applibrary
+  #   cosmic-notifications
+  #   cosmic-settings-daemon
+  #   cosmic-workspaces-epoch
+  #   xdg-desktop-portal-cosmic
+  # ] ++ 
     [ # Apps
       mpv
       teamspeak5_client
@@ -74,6 +98,10 @@ let
       lld
       ninja
       cmake
+
+      #ah
+      gdb
+      gdbgui
     ] ++ [ # python311
       (python311.withPackages (ps:
         with ps; [

@@ -13,7 +13,16 @@
 
   programs = {
     home-manager.enable = true;
-    tmux.enable = true;
+    tmux = {
+      enable = true;
+      clock24 = true;
+      keyMode = "vi";
+      mouse = true;
+      extraConfig = ''
+        set -g default-terminal "screen-256color"
+      '';
+      # TODO: Configure better
+    };
     # Shell history thing
     # atuin.enable = true;
     zellij = {
