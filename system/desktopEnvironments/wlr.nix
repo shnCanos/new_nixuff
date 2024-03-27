@@ -39,7 +39,11 @@
 
     # Gnome related
     services.gvfs.enable = true; # for nautilus
-    environment.systemPackages = with pkgs; [ polkit_gnome ];
+    environment.systemPackages = with pkgs; [
+      polkit_gnome
+      # For some reason, programs.nm-applet does not work
+      networkmanagerapplet
+    ];
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];

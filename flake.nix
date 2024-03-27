@@ -9,6 +9,9 @@
     };
     my-nixvim-config.url = "github:shnCanos/myNixVimConfig";
     stylix.url = "github:danth/stylix";
+
+    # anyrun.url = "github:Kirottu/anyrun";
+    # anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -89,7 +92,7 @@
           usePlasma = true;
 
           isDesktop = false;
-          useHyprland = true;
+          useHyprland = false;
           useSway = false;
 
           extraSystemImports = [ "${./hosts}/${configName}.nix" ];
@@ -105,10 +108,10 @@
             file = ./home-manager/backgrounds/fusion.png;
             isVideo = false;
           };
-          usePlasma = true;
+          usePlasma = false;
 
           useSway = false;
-          useHyprland = false;
+          useHyprland = true;
           isDesktop = false;
 
           extraSystemImports = [ "${./hosts}/${configName}.nix" ];

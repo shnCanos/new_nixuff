@@ -37,7 +37,7 @@ in {
           "pulseaudio"
           "pulseaudio#microphone"
           "custom/separator"
-          "${current}/language"
+          # "${current}/language"
           "tray"
           "custom/separator"
           "clock"
@@ -138,7 +138,7 @@ in {
         };
 
         clock = {
-          format = "{: %R  %d/%m}";
+          format = " {:%R  %d/%m}";
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';

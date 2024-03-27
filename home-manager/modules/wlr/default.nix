@@ -17,11 +17,18 @@
   config = lib.mkIf (useHyprland || useSway) {
 
     home.packages = with pkgs; [
+      meson
+      wayland-protocols
+      wayland-utils
+      wl-clipboard
+      wlroots
+
       # KDE
       okular
       gwenview
       qt5.qtwayland
-      # libsForQt5.dolphin
+      qt5ct
+      libsForQt5.dolphin
 
       # GNOME
       gnome.nautilus
@@ -39,5 +46,14 @@
 
       swaybg
     ];
+
+    qt = {
+      enable = true;
+      platformTheme = "qtct";
+      # style = {
+      #   name = "adwaita-dark";
+      #   package = pkgs.adwaita-qt;
+      # };
+    };
   };
 }

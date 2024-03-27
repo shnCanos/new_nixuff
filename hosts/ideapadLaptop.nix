@@ -13,9 +13,9 @@
   networking.hostName = "canos-ideapad-laptop";
 
   # Fingerprint (Probably not going to do anything, however)
-  services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+  # services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
   # Bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth

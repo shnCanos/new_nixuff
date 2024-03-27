@@ -25,6 +25,7 @@ in {
           "gammastep"
           "waybar"
           "swayidle"
+          "fcitx5"
           (global.funcs.applyWallpaper wallpaper)
 
           "[workspace 1 silent] firefox"
@@ -33,6 +34,7 @@ in {
 
         monitor = [
           "desc:ASUSTek COMPUTER INC VG248 K4LMQS112536,highrr,auto,1,transform,3"
+          # "desc:BOE 0x08D5,highrr,auto,1"
           ",highrr,auto,1"
         ];
 
@@ -44,7 +46,8 @@ in {
 
         input = {
           kb_layout = "us,pt";
-          kb_options = "grp:win_space_toggle";
+          # use fcitx5 instead
+          # kb_options = "grp:win_space_toggle";
           touchpad.natural_scroll = lib.mkIf (!isDesktop) true;
           # follow_mouse = "2"; # Click windows to focus them
           accel_profile = lib.mkIf (isDesktop) "flat";

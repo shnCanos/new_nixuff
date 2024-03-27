@@ -30,7 +30,8 @@ in {
       "${mod1}_SHIFT,S,exec,${vars.screenshot}"
 
       "${mod1},Q,killactive"
-      "${mod1},F,fullscreen"
+      "${mod1},F,fullscreen,1"
+      "${mod1}_SHIFT,F,fullscreen,0"
       "${mod1}_SHIFT,E,exec,${
         global.funcs.powermenu {
           in_corner = false;
@@ -75,6 +76,18 @@ in {
       "${mod2},l,resizeactive,200 0"
 
       "${mod1}_SHIFT,-,movetoworkspace,special"
+
+      # weird workspaces
+      "SUPER, KP_End, workspace, 7"
+      "SUPER, KP_Down, workspace, 8"
+      "SUPER, KP_Next, workspace, 9"
+      "SUPER, KP_Left, workspace, 4"
+      "SUPER, KP_Begin, workspace, 5"
+      "SUPER, KP_Right, workspace, 6"
+      "SUPER, KP_Home, workspace, 1"
+      "SUPER, KP_Up, workspace, 2"
+      "SUPER, KP_Prior, workspace, 3"
+      "SUPER, KP_Insert, workspace, 10 "
     ] ++
       # WIN+NUM WORKSPACESHORTCUTS
       (getStringBetween 1 9 (ws: "${mod1},${ws},workspace,${ws}")) ++
