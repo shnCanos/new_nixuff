@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    my-nixvim-config.url = "github:shnCanos/myNixVimConfig";
+    # my-nixvim-config.url = "github:shnCanos/myNixVimConfig";
     stylix.url = "github:danth/stylix";
 
     # anyrun.url = "github:Kirottu/anyrun";

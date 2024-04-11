@@ -33,6 +33,7 @@ let
       discord
       kcalc
       sioyek
+      neovim
     ] ++
 
     # Cool stuff

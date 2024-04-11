@@ -6,7 +6,7 @@ let
   vars = global.vars;
 
 in {
-  imports = [ ./dunst.nix ./binds.nix ];
+  imports = [ /*./dunst.nix */ ./binds.nix ./swaync.nix];
 
   config = lib.mkIf (useHyprland) {
     wayland.windowManager.hyprland = {

@@ -1,4 +1,4 @@
-{ useSway, useHyprland, wallpaper, ... }:
+{ useSway, useHyprland, pkgs, ... }:
 let
   global = import ../globals.nix;
 
@@ -42,6 +42,7 @@ in {
           "custom/separator"
           "clock"
           "custom/separator"
+          "custom/swayncpanel"
           "idle_inhibitor"
           "custom/powermenu"
         ];
@@ -105,8 +106,8 @@ in {
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = mkColor colors.brown "󰅶 ";
-            deactivated = "󰾪 ";
+            activated = mkColor colors.brown " 󰅶 ";
+            deactivated = " 󰾪 ";
           };
         };
 
@@ -125,6 +126,21 @@ in {
           format = "  ";
           interval = "once";
           tooltip = false;
+        };
+
+        "custom/swayncpanel" = {
+          exec = "bash ${pkgs.writeText "swayncpanel.sh" 
+          ''
+          if [[ $(swaync-client -D) = 'false' ]] then
+            echo " "
+          else
+            echo " "
+          fi
+          ''}";
+          format = "{}";
+          interval = 10;
+          tooltip = false;
+          on-click = "swaync-client -t";
         };
 
         "pulseaudio#microphone" = {

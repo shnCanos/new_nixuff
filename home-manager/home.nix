@@ -1,11 +1,11 @@
-{ config, my-nixvim-config, homePath, nixuffPath, system, ... }:
+{ config, homePath, nixuffPath, system, ... }:
 
 {
   imports = [ ./modules ];
 
-  home.packages = [ # pkgs.wakapi
-    my-nixvim-config.packages."${system}".default
-  ];
+  # home.packages = [ # pkgs.wakapi
+  #   my-nixvim-config.packages."${system}".default
+  # ];
 
   home.username = "canos";
   home.homeDirectory = homePath;
