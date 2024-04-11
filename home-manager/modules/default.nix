@@ -15,5 +15,6 @@
     ./kitty.nix
     ./mpv.nix
     ./lazygit.nix
+    ./wakapi
   ];
 }

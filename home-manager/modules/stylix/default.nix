@@ -1,12 +1,17 @@
 { stylix, wallpaper, pkgs, ... }:
 
 let
+  nerdFontPackage = name: (pkgs.nerdfonts.override { fonts = [ name ]; });
   nerdFont = name: {
     name = "${name} Nerd Font";
-    package = (pkgs.nerdfonts.override { fonts = [ name ]; });
+    package = nerdFontPackage name;
   };
   firaCode = nerdFont "FiraCode";
   jetBrainsMono = nerdFont "JetBrainsMono";
+  gohuFont = {
+    name = "GohuFont 14 Nerd Font";
+    package = nerdFontPackage "Gohu";
+  };
 in {
   # imports = [ inputs.stylix.nixosModules.stylix ];
   imports = [ stylix.homeManagerModules.stylix ];
@@ -23,7 +28,8 @@ in {
       sansSerif = jetBrainsMono;
       monospace = firaCode;
       sizes = {
-        terminal = 12;
+        terminal = 13; # FiraCode terminal font size
+        # terminal = 17; # Gohu terminal font size
         applications = 10;
       };
     };

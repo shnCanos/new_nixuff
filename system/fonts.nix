@@ -13,7 +13,7 @@
       emacs-all-the-icons-fonts
       # nerdfonts
       symbola
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "Gohu" ]; })
     ];
     fontDir.enable = true;
   };

@@ -32,6 +32,7 @@ let
       discover
       discord
       kcalc
+      sioyek
     ] ++
 
     # Cool stuff
@@ -77,7 +78,6 @@ let
       # Do I even need this?
       gamescope
       showmethekey
-
     ] ++
     # Dev stuff
     [
