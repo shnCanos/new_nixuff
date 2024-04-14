@@ -1,43 +1,19 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 # TODO: Restructure this
 let
-  apps = with pkgs;
-  # [
-  #   cosmic-bg
-  #   cosmic-osd
-  #   cosmic-term
-  #   cosmic-edit
-  #   cosmic-comp
-  #   cosmic-randr
-  #   cosmic-panel
-  #   cosmic-icons
-  #   cosmic-files
-  #   cosmic-session
-  #   cosmic-greeter
-  #   cosmic-applets
-  #   cosmic-settings
-  #   cosmic-launcher
-  #   cosmic-protocols
-  #   cosmic-screenshot
-  #   cosmic-applibrary
-  #   cosmic-notifications
-  #   cosmic-settings-daemon
-  #   cosmic-workspaces-epoch
-  #   xdg-desktop-portal-cosmic
-  # ] ++ 
-    [ # Apps
+  apps = with pkgs; {
+    mainApps = [
+      # Apps
       mpv
       teamspeak5_client
       discover
       discord
       kcalc
       sioyek
-      neovim
-    ] ++
+    ];
 
-    # Cool stuff
-    [
+    cliUtils = [
       # Icon theme
       tela-icon-theme
 
@@ -79,37 +55,86 @@ let
       # Do I even need this?
       gamescope
       showmethekey
-    ] ++
-    # Dev stuff
-    [
-      # Flutter
-      flutter
+    ];
+    neovimStuff = [
+      neovim
 
-      # PROLOG
-      swiProlog
-
-      # LUA
-      lua
-
+      # LSPs, formatters and linters
+      # Lua
+      lua-language-server
+      stylua
       # Rust
-      cargo
-      gcc
-
-      # Dependencies
-      lld
-      ninja
+      rust-analyzer
+      # C
+      clang-tools
+      ccls
+      cppcheck
       cmake
+      astyle
+      # cmake_lint
+      # Bash
+      nodePackages.bash-language-server
+      shfmt
+      # Python
+      nodePackages.pyright
+      ruff-lsp
+      python311Packages.black
+      python311Packages.isort
+      # nix
+      nil
+      nixd
+      statix
+      nixfmt-rfc-style
+      deadnix
+      markdownlint-cli
+      # normal text
+      ltex-ls
+      # Assembly
+      asm-lsp
 
-      #ah
+      # Treesitter
+      vimPlugins.nvim-treesitter.withAllGrammars
+      tree-sitter
+
+      # Other
+      unzip
+      nodejs # npm
+      fzf
+    ];
+
+    devStuff = [
+      # Rust
+      rustup
+      # C
+      gcc
+      cmake
       gdb
       gdbgui
-    ] ++ [ # python311
-      (python311.withPackages (ps:
-        with ps; [
+      valgrind
+      glibc
+      astyle
+      uncrustify
+      python310Packages.lizard
+      astyle
+      lld
+      ninja
+      # Flutter
+      flutter
+      # PROLOG
+      swiProlog
+      # LUA
+      lua
+      # Other
+      zip
+      icdiff
+    ];
+
+    other = [
+      # python311
+      (python311.withPackages (
+        ps: with ps; [
           # Doom
-          black
           pyflakes
-          isort
           pipenv
           nose
           pytest
@@ -119,6 +144,11 @@ let
 
           # I don't know
           pynvim
-        ]))
+        ]
+      ))
     ];
-in { environment.systemPackages = apps; }
+  };
+in
+{
+  environment.systemPackages = builtins.concatLists (builtins.attrValues apps);
+}
