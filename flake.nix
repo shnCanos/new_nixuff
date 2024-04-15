@@ -14,30 +14,42 @@
     # anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       inherit (nixpkgs) lib;
 
       mkConfig =
-        { system, extraSystemImports, extraHomeManagerImports, ... }@systemArgs:
+        {
+          system,
+          extraSystemImports,
+          extraHomeManagerImports,
+          ...
+        }@systemArgs:
         let
           pkgs = import nixpkgs {
             system = system;
-            config = { allowUnfree = true; };
+            config = {
+              allowUnfree = true;
+            };
             overlays = [
               (final: prev: {
                 # My precious and necessary motivation
-                shell-mommy =
-                  final.callPackage ./derivations/shell-mommy.nix { };
+                shell-mommy = final.callPackage ./derivations/shell-mommy.nix { };
                 # My precious icons
-                reisen-cursors =
-                  final.callPackage ./derivations/reisen-cursors.nix { };
+                reisen-cursors = final.callPackage ./derivations/reisen-cursors.nix { };
               })
             ];
           };
 
           extraArgs = systemArgs // inputs // { inherit pkgs; };
-        in lib.nixosSystem {
+        in
+        lib.nixosSystem {
           inherit system;
           specialArgs = extraArgs;
 
@@ -50,15 +62,17 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
 
-                users.canos = { ... }: {
-                  imports = [ ./home-manager/home.nix ]
-                    ++ extraHomeManagerImports;
-                };
+                users.canos =
+                  { ... }:
+                  {
+                    imports = [ ./home-manager/home.nix ] ++ extraHomeManagerImports;
+                  };
               };
             }
           ] ++ extraSystemImports;
         };
-    in {
+    in
+    {
       nixosConfigurations = {
 
         main = mkConfig rec {

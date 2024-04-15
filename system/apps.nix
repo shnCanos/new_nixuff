@@ -1,6 +1,5 @@
 { pkgs, ... }:
 
-# TODO: Restructure this
 let
   apps = with pkgs; {
     mainApps = [
@@ -100,6 +99,7 @@ let
       unzip
       nodejs # npm
       fzf
+      fd # For virtualenvs, apparently?
     ];
 
     devStuff = [
